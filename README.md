@@ -12,11 +12,9 @@ Data is provided by the Los Angeles Police Department and is updated on a weekly
 ### **Architecture & Design**
 The application combines the use of AWS EC2, AWS S3, AWS Redshift, Apache Spark, and Apache Kafka to provide real-time analysis of data using parallel processing and cloud-based computing/storage.
 
+Using an EC2 instance, an Apache Kafka stream is run which accesses the source data web API and extracts data on a daily basis. The data is then transformed into a Spark Dataframe and written as a CSV file on an S3 cluster. Using Python, the data is grabbed from the S3 cluster, transformed, and appended onto a production Redshift database. For modeling, the data is queried as a Spark Dataframe, feature engineered and then trained in parallel using the MLlib library. Finally, the data, model output, and data transformations are visualized through the Streamlit UI package, which is a Python-based front-end web framework.
 
 ![flowchart](Flowchart.PNG)
-
-
-Using an EC2 instance, an Apache Kafka stream is run which accesses the source data web API and extracts data on a daily basis. The data is then transformed into a Spark Dataframe and written as a CSV file on an S3 cluster. Using Python, the data is grabbed from the S3 cluster, transformed, and appended onto a production Redshift database. For modeling, the data is queried as a Spark Dataframe, feature engineered and then trained in parallel using the MLlib library. Finally, the data, model output, and data transformations are visualized through the Streamlit UI package, which is a Python-based front-end web framework.
 
 
 ### **Functions & Components**
